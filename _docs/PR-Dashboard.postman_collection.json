@@ -1,0 +1,383 @@
+{
+	"info": {
+		"_postman_id": "910eba63-7bf9-48f5-b765-12664e9fb35a",
+		"name": "PR-Dashboard",
+		"description": "Github Pull Request Dashboard",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "POST /webhooks",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"action\": \"opened\",\n  \"number\": 5,\n  \"pull_request\": {\n    \"url\": \"https://api.github.com/repos/g0g11/test/pulls/5\",\n    \"id\": 186340801,\n    \"html_url\": \"https://github.com/g0g11/test/pull/5\",\n    \"diff_url\": \"https://github.com/g0g11/test/pull/5.diff\",\n    \"patch_url\": \"https://github.com/g0g11/test/pull/5.patch\",\n    \"issue_url\": \"https://api.github.com/repos/g0g11/test/issues/5\",\n    \"number\": 5,\n    \"state\": \"open\",\n    \"locked\": false,\n    \"title\": \"Gorantest\",\n    \"user\": {\n      \"login\": \"g0g11\",\n      \"id\": 16637843,\n      \"avatar_url\": \"https://avatars2.githubusercontent.com/u/16637843?v=4\",\n      \"gravatar_id\": \"\",\n      \"url\": \"https://api.github.com/users/g0g11\",\n      \"html_url\": \"https://github.com/g0g11\",\n      \"followers_url\": \"https://api.github.com/users/g0g11/followers\",\n      \"following_url\": \"https://api.github.com/users/g0g11/following{/other_user}\",\n      \"gists_url\": \"https://api.github.com/users/g0g11/gists{/gist_id}\",\n      \"starred_url\": \"https://api.github.com/users/g0g11/starred{/owner}{/repo}\",\n      \"subscriptions_url\": \"https://api.github.com/users/g0g11/subscriptions\",\n      \"organizations_url\": \"https://api.github.com/users/g0g11/orgs\",\n      \"repos_url\": \"https://api.github.com/users/g0g11/repos\",\n      \"events_url\": \"https://api.github.com/users/g0g11/events{/privacy}\",\n      \"received_events_url\": \"https://api.github.com/users/g0g11/received_events\",\n      \"type\": \"User\",\n      \"site_admin\": false\n    },\n    \"body\": \"\",\n    \"created_at\": \"2018-05-07T12:43:35Z\",\n    \"updated_at\": \"2018-05-07T12:43:35Z\",\n    \"closed_at\": null,\n    \"merged_at\": null,\n    \"merge_commit_sha\": null,\n    \"assignee\": null,\n    \"assignees\": [\n\n    ],\n    \"requested_reviewers\": [\n\n    ],\n    \"requested_teams\": [\n\n    ],\n    \"labels\": [\n\n    ],\n    \"milestone\": null,\n    \"commits_url\": \"https://api.github.com/repos/g0g11/test/pulls/5/commits\",\n    \"review_comments_url\": \"https://api.github.com/repos/g0g11/test/pulls/5/comments\",\n    \"review_comment_url\": \"https://api.github.com/repos/g0g11/test/pulls/comments{/number}\",\n    \"comments_url\": \"https://api.github.com/repos/g0g11/test/issues/5/comments\",\n    \"statuses_url\": \"https://api.github.com/repos/g0g11/test/statuses/710950f36fa9c132a0578fa36b66252dd362e9c3\",\n    \"head\": {\n      \"label\": \"g0g11:gorantest\",\n      \"ref\": \"gorantest\",\n      \"sha\": \"710950f36fa9c132a0578fa36b66252dd362e9c3\",\n      \"user\": {\n        \"login\": \"g0g11\",\n        \"id\": 16637843,\n        \"avatar_url\": \"https://avatars2.githubusercontent.com/u/16637843?v=4\",\n        \"gravatar_id\": \"\",\n        \"url\": \"https://api.github.com/users/g0g11\",\n        \"html_url\": \"https://github.com/g0g11\",\n        \"followers_url\": \"https://api.github.com/users/g0g11/followers\",\n        \"following_url\": \"https://api.github.com/users/g0g11/following{/other_user}\",\n        \"gists_url\": \"https://api.github.com/users/g0g11/gists{/gist_id}\",\n        \"starred_url\": \"https://api.github.com/users/g0g11/starred{/owner}{/repo}\",\n        \"subscriptions_url\": \"https://api.github.com/users/g0g11/subscriptions\",\n        \"organizations_url\": \"https://api.github.com/users/g0g11/orgs\",\n        \"repos_url\": \"https://api.github.com/users/g0g11/repos\",\n        \"events_url\": \"https://api.github.com/users/g0g11/events{/privacy}\",\n        \"received_events_url\": \"https://api.github.com/users/g0g11/received_events\",\n        \"type\": \"User\",\n        \"site_admin\": false\n      },\n      \"repo\": {\n        \"id\": 132176588,\n        \"name\": \"test\",\n        \"full_name\": \"g0g11/test\",\n        \"owner\": {\n          \"login\": \"g0g11\",\n          \"id\": 16637843,\n          \"avatar_url\": \"https://avatars2.githubusercontent.com/u/16637843?v=4\",\n          \"gravatar_id\": \"\",\n          \"url\": \"https://api.github.com/users/g0g11\",\n          \"html_url\": \"https://github.com/g0g11\",\n          \"followers_url\": \"https://api.github.com/users/g0g11/followers\",\n          \"following_url\": \"https://api.github.com/users/g0g11/following{/other_user}\",\n          \"gists_url\": \"https://api.github.com/users/g0g11/gists{/gist_id}\",\n          \"starred_url\": \"https://api.github.com/users/g0g11/starred{/owner}{/repo}\",\n          \"subscriptions_url\": \"https://api.github.com/users/g0g11/subscriptions\",\n          \"organizations_url\": \"https://api.github.com/users/g0g11/orgs\",\n          \"repos_url\": \"https://api.github.com/users/g0g11/repos\",\n          \"events_url\": \"https://api.github.com/users/g0g11/events{/privacy}\",\n          \"received_events_url\": \"https://api.github.com/users/g0g11/received_events\",\n          \"type\": \"User\",\n          \"site_admin\": false\n        },\n        \"private\": false,\n        \"html_url\": \"https://github.com/g0g11/test\",\n        \"description\": null,\n        \"fork\": false,\n        \"url\": \"https://api.github.com/repos/g0g11/test\",\n        \"forks_url\": \"https://api.github.com/repos/g0g11/test/forks\",\n        \"keys_url\": \"https://api.github.com/repos/g0g11/test/keys{/key_id}\",\n        \"collaborators_url\": \"https://api.github.com/repos/g0g11/test/collaborators{/collaborator}\",\n        \"teams_url\": \"https://api.github.com/repos/g0g11/test/teams\",\n        \"hooks_url\": \"https://api.github.com/repos/g0g11/test/hooks\",\n        \"issue_events_url\": \"https://api.github.com/repos/g0g11/test/issues/events{/number}\",\n        \"events_url\": \"https://api.github.com/repos/g0g11/test/events\",\n        \"assignees_url\": \"https://api.github.com/repos/g0g11/test/assignees{/user}\",\n        \"branches_url\": \"https://api.github.com/repos/g0g11/test/branches{/branch}\",\n        \"tags_url\": \"https://api.github.com/repos/g0g11/test/tags\",\n        \"blobs_url\": \"https://api.github.com/repos/g0g11/test/git/blobs{/sha}\",\n        \"git_tags_url\": \"https://api.github.com/repos/g0g11/test/git/tags{/sha}\",\n        \"git_refs_url\": \"https://api.github.com/repos/g0g11/test/git/refs{/sha}\",\n        \"trees_url\": \"https://api.github.com/repos/g0g11/test/git/trees{/sha}\",\n        \"statuses_url\": \"https://api.github.com/repos/g0g11/test/statuses/{sha}\",\n        \"languages_url\": \"https://api.github.com/repos/g0g11/test/languages\",\n        \"stargazers_url\": \"https://api.github.com/repos/g0g11/test/stargazers\",\n        \"contributors_url\": \"https://api.github.com/repos/g0g11/test/contributors\",\n        \"subscribers_url\": \"https://api.github.com/repos/g0g11/test/subscribers\",\n        \"subscription_url\": \"https://api.github.com/repos/g0g11/test/subscription\",\n        \"commits_url\": \"https://api.github.com/repos/g0g11/test/commits{/sha}\",\n        \"git_commits_url\": \"https://api.github.com/repos/g0g11/test/git/commits{/sha}\",\n        \"comments_url\": \"https://api.github.com/repos/g0g11/test/comments{/number}\",\n        \"issue_comment_url\": \"https://api.github.com/repos/g0g11/test/issues/comments{/number}\",\n        \"contents_url\": \"https://api.github.com/repos/g0g11/test/contents/{+path}\",\n        \"compare_url\": \"https://api.github.com/repos/g0g11/test/compare/{base}...{head}\",\n        \"merges_url\": \"https://api.github.com/repos/g0g11/test/merges\",\n        \"archive_url\": \"https://api.github.com/repos/g0g11/test/{archive_format}{/ref}\",\n        \"downloads_url\": \"https://api.github.com/repos/g0g11/test/downloads\",\n        \"issues_url\": \"https://api.github.com/repos/g0g11/test/issues{/number}\",\n        \"pulls_url\": \"https://api.github.com/repos/g0g11/test/pulls{/number}\",\n        \"milestones_url\": \"https://api.github.com/repos/g0g11/test/milestones{/number}\",\n        \"notifications_url\": \"https://api.github.com/repos/g0g11/test/notifications{?since,all,participating}\",\n        \"labels_url\": \"https://api.github.com/repos/g0g11/test/labels{/name}\",\n        \"releases_url\": \"https://api.github.com/repos/g0g11/test/releases{/id}\",\n        \"deployments_url\": \"https://api.github.com/repos/g0g11/test/deployments\",\n        \"created_at\": \"2018-05-04T18:41:01Z\",\n        \"updated_at\": \"2018-05-07T08:58:24Z\",\n        \"pushed_at\": \"2018-05-07T12:43:13Z\",\n        \"git_url\": \"git://github.com/g0g11/test.git\",\n        \"ssh_url\": \"git@github.com:g0g11/test.git\",\n        \"clone_url\": \"https://github.com/g0g11/test.git\",\n        \"svn_url\": \"https://github.com/g0g11/test\",\n        \"homepage\": null,\n        \"size\": 1,\n        \"stargazers_count\": 0,\n        \"watchers_count\": 0,\n        \"language\": null,\n        \"has_issues\": true,\n        \"has_projects\": true,\n        \"has_downloads\": true,\n        \"has_wiki\": true,\n        \"has_pages\": false,\n        \"forks_count\": 0,\n        \"mirror_url\": null,\n        \"archived\": false,\n        \"open_issues_count\": 4,\n        \"license\": null,\n        \"forks\": 0,\n        \"open_issues\": 4,\n        \"watchers\": 0,\n        \"default_branch\": \"master\"\n      }\n    },\n    \"base\": {\n      \"label\": \"g0g11:master\",\n      \"ref\": \"master\",\n      \"sha\": \"0fbc3221b6361d838ce065b5500b790f71646b54\",\n      \"user\": {\n        \"login\": \"g0g11\",\n        \"id\": 16637843,\n        \"avatar_url\": \"https://avatars2.githubusercontent.com/u/16637843?v=4\",\n        \"gravatar_id\": \"\",\n        \"url\": \"https://api.github.com/users/g0g11\",\n        \"html_url\": \"https://github.com/g0g11\",\n        \"followers_url\": \"https://api.github.com/users/g0g11/followers\",\n        \"following_url\": \"https://api.github.com/users/g0g11/following{/other_user}\",\n        \"gists_url\": \"https://api.github.com/users/g0g11/gists{/gist_id}\",\n        \"starred_url\": \"https://api.github.com/users/g0g11/starred{/owner}{/repo}\",\n        \"subscriptions_url\": \"https://api.github.com/users/g0g11/subscriptions\",\n        \"organizations_url\": \"https://api.github.com/users/g0g11/orgs\",\n        \"repos_url\": \"https://api.github.com/users/g0g11/repos\",\n        \"events_url\": \"https://api.github.com/users/g0g11/events{/privacy}\",\n        \"received_events_url\": \"https://api.github.com/users/g0g11/received_events\",\n        \"type\": \"User\",\n        \"site_admin\": false\n      },\n      \"repo\": {\n        \"id\": 132176588,\n        \"name\": \"test\",\n        \"full_name\": \"g0g11/test\",\n        \"owner\": {\n          \"login\": \"g0g11\",\n          \"id\": 16637843,\n          \"avatar_url\": \"https://avatars2.githubusercontent.com/u/16637843?v=4\",\n          \"gravatar_id\": \"\",\n          \"url\": \"https://api.github.com/users/g0g11\",\n          \"html_url\": \"https://github.com/g0g11\",\n          \"followers_url\": \"https://api.github.com/users/g0g11/followers\",\n          \"following_url\": \"https://api.github.com/users/g0g11/following{/other_user}\",\n          \"gists_url\": \"https://api.github.com/users/g0g11/gists{/gist_id}\",\n          \"starred_url\": \"https://api.github.com/users/g0g11/starred{/owner}{/repo}\",\n          \"subscriptions_url\": \"https://api.github.com/users/g0g11/subscriptions\",\n          \"organizations_url\": \"https://api.github.com/users/g0g11/orgs\",\n          \"repos_url\": \"https://api.github.com/users/g0g11/repos\",\n          \"events_url\": \"https://api.github.com/users/g0g11/events{/privacy}\",\n          \"received_events_url\": \"https://api.github.com/users/g0g11/received_events\",\n          \"type\": \"User\",\n          \"site_admin\": false\n        },\n        \"private\": false,\n        \"html_url\": \"https://github.com/g0g11/test\",\n        \"description\": null,\n        \"fork\": false,\n        \"url\": \"https://api.github.com/repos/g0g11/test\",\n        \"forks_url\": \"https://api.github.com/repos/g0g11/test/forks\",\n        \"keys_url\": \"https://api.github.com/repos/g0g11/test/keys{/key_id}\",\n        \"collaborators_url\": \"https://api.github.com/repos/g0g11/test/collaborators{/collaborator}\",\n        \"teams_url\": \"https://api.github.com/repos/g0g11/test/teams\",\n        \"hooks_url\": \"https://api.github.com/repos/g0g11/test/hooks\",\n        \"issue_events_url\": \"https://api.github.com/repos/g0g11/test/issues/events{/number}\",\n        \"events_url\": \"https://api.github.com/repos/g0g11/test/events\",\n        \"assignees_url\": \"https://api.github.com/repos/g0g11/test/assignees{/user}\",\n        \"branches_url\": \"https://api.github.com/repos/g0g11/test/branches{/branch}\",\n        \"tags_url\": \"https://api.github.com/repos/g0g11/test/tags\",\n        \"blobs_url\": \"https://api.github.com/repos/g0g11/test/git/blobs{/sha}\",\n        \"git_tags_url\": \"https://api.github.com/repos/g0g11/test/git/tags{/sha}\",\n        \"git_refs_url\": \"https://api.github.com/repos/g0g11/test/git/refs{/sha}\",\n        \"trees_url\": \"https://api.github.com/repos/g0g11/test/git/trees{/sha}\",\n        \"statuses_url\": \"https://api.github.com/repos/g0g11/test/statuses/{sha}\",\n        \"languages_url\": \"https://api.github.com/repos/g0g11/test/languages\",\n        \"stargazers_url\": \"https://api.github.com/repos/g0g11/test/stargazers\",\n        \"contributors_url\": \"https://api.github.com/repos/g0g11/test/contributors\",\n        \"subscribers_url\": \"https://api.github.com/repos/g0g11/test/subscribers\",\n        \"subscription_url\": \"https://api.github.com/repos/g0g11/test/subscription\",\n        \"commits_url\": \"https://api.github.com/repos/g0g11/test/commits{/sha}\",\n        \"git_commits_url\": \"https://api.github.com/repos/g0g11/test/git/commits{/sha}\",\n        \"comments_url\": \"https://api.github.com/repos/g0g11/test/comments{/number}\",\n        \"issue_comment_url\": \"https://api.github.com/repos/g0g11/test/issues/comments{/number}\",\n        \"contents_url\": \"https://api.github.com/repos/g0g11/test/contents/{+path}\",\n        \"compare_url\": \"https://api.github.com/repos/g0g11/test/compare/{base}...{head}\",\n        \"merges_url\": \"https://api.github.com/repos/g0g11/test/merges\",\n        \"archive_url\": \"https://api.github.com/repos/g0g11/test/{archive_format}{/ref}\",\n        \"downloads_url\": \"https://api.github.com/repos/g0g11/test/downloads\",\n        \"issues_url\": \"https://api.github.com/repos/g0g11/test/issues{/number}\",\n        \"pulls_url\": \"https://api.github.com/repos/g0g11/test/pulls{/number}\",\n        \"milestones_url\": \"https://api.github.com/repos/g0g11/test/milestones{/number}\",\n        \"notifications_url\": \"https://api.github.com/repos/g0g11/test/notifications{?since,all,participating}\",\n        \"labels_url\": \"https://api.github.com/repos/g0g11/test/labels{/name}\",\n        \"releases_url\": \"https://api.github.com/repos/g0g11/test/releases{/id}\",\n        \"deployments_url\": \"https://api.github.com/repos/g0g11/test/deployments\",\n        \"created_at\": \"2018-05-04T18:41:01Z\",\n        \"updated_at\": \"2018-05-07T08:58:24Z\",\n        \"pushed_at\": \"2018-05-07T12:43:13Z\",\n        \"git_url\": \"git://github.com/g0g11/test.git\",\n        \"ssh_url\": \"git@github.com:g0g11/test.git\",\n        \"clone_url\": \"https://github.com/g0g11/test.git\",\n        \"svn_url\": \"https://github.com/g0g11/test\",\n        \"homepage\": null,\n        \"size\": 1,\n        \"stargazers_count\": 0,\n        \"watchers_count\": 0,\n        \"language\": null,\n        \"has_issues\": true,\n        \"has_projects\": true,\n        \"has_downloads\": true,\n        \"has_wiki\": true,\n        \"has_pages\": false,\n        \"forks_count\": 0,\n        \"mirror_url\": null,\n        \"archived\": false,\n        \"open_issues_count\": 4,\n        \"license\": null,\n        \"forks\": 0,\n        \"open_issues\": 4,\n        \"watchers\": 0,\n        \"default_branch\": \"master\"\n      }\n    },\n    \"_links\": {\n      \"self\": {\n        \"href\": \"https://api.github.com/repos/g0g11/test/pulls/5\"\n      },\n      \"html\": {\n        \"href\": \"https://github.com/g0g11/test/pull/5\"\n      },\n      \"issue\": {\n        \"href\": \"https://api.github.com/repos/g0g11/test/issues/5\"\n      },\n      \"comments\": {\n        \"href\": \"https://api.github.com/repos/g0g11/test/issues/5/comments\"\n      },\n      \"review_comments\": {\n        \"href\": \"https://api.github.com/repos/g0g11/test/pulls/5/comments\"\n      },\n      \"review_comment\": {\n        \"href\": \"https://api.github.com/repos/g0g11/test/pulls/comments{/number}\"\n      },\n      \"commits\": {\n        \"href\": \"https://api.github.com/repos/g0g11/test/pulls/5/commits\"\n      },\n      \"statuses\": {\n        \"href\": \"https://api.github.com/repos/g0g11/test/statuses/710950f36fa9c132a0578fa36b66252dd362e9c3\"\n      }\n    },\n    \"author_association\": \"OWNER\",\n    \"merged\": false,\n    \"mergeable\": null,\n    \"rebaseable\": null,\n    \"mergeable_state\": \"unknown\",\n    \"merged_by\": null,\n    \"comments\": 2,\n    \"review_comments\": 0,\n    \"maintainer_can_modify\": false,\n    \"commits\": 3,\n    \"additions\": 3,\n    \"deletions\": 3,\n    \"changed_files\": 1\n  },\n  \"repository\": {\n    \"id\": 132176588,\n    \"name\": \"test\",\n    \"full_name\": \"g0g11/test\",\n    \"owner\": {\n      \"login\": \"g0g11\",\n      \"id\": 16637843,\n      \"avatar_url\": \"https://avatars2.githubusercontent.com/u/16637843?v=4\",\n      \"gravatar_id\": \"\",\n      \"url\": \"https://api.github.com/users/g0g11\",\n      \"html_url\": \"https://github.com/g0g11\",\n      \"followers_url\": \"https://api.github.com/users/g0g11/followers\",\n      \"following_url\": \"https://api.github.com/users/g0g11/following{/other_user}\",\n      \"gists_url\": \"https://api.github.com/users/g0g11/gists{/gist_id}\",\n      \"starred_url\": \"https://api.github.com/users/g0g11/starred{/owner}{/repo}\",\n      \"subscriptions_url\": \"https://api.github.com/users/g0g11/subscriptions\",\n      \"organizations_url\": \"https://api.github.com/users/g0g11/orgs\",\n      \"repos_url\": \"https://api.github.com/users/g0g11/repos\",\n      \"events_url\": \"https://api.github.com/users/g0g11/events{/privacy}\",\n      \"received_events_url\": \"https://api.github.com/users/g0g11/received_events\",\n      \"type\": \"User\",\n      \"site_admin\": false\n    },\n    \"private\": false,\n    \"html_url\": \"https://github.com/g0g11/test\",\n    \"description\": null,\n    \"fork\": false,\n    \"url\": \"https://api.github.com/repos/g0g11/test\",\n    \"forks_url\": \"https://api.github.com/repos/g0g11/test/forks\",\n    \"keys_url\": \"https://api.github.com/repos/g0g11/test/keys{/key_id}\",\n    \"collaborators_url\": \"https://api.github.com/repos/g0g11/test/collaborators{/collaborator}\",\n    \"teams_url\": \"https://api.github.com/repos/g0g11/test/teams\",\n    \"hooks_url\": \"https://api.github.com/repos/g0g11/test/hooks\",\n    \"issue_events_url\": \"https://api.github.com/repos/g0g11/test/issues/events{/number}\",\n    \"events_url\": \"https://api.github.com/repos/g0g11/test/events\",\n    \"assignees_url\": \"https://api.github.com/repos/g0g11/test/assignees{/user}\",\n    \"branches_url\": \"https://api.github.com/repos/g0g11/test/branches{/branch}\",\n    \"tags_url\": \"https://api.github.com/repos/g0g11/test/tags\",\n    \"blobs_url\": \"https://api.github.com/repos/g0g11/test/git/blobs{/sha}\",\n    \"git_tags_url\": \"https://api.github.com/repos/g0g11/test/git/tags{/sha}\",\n    \"git_refs_url\": \"https://api.github.com/repos/g0g11/test/git/refs{/sha}\",\n    \"trees_url\": \"https://api.github.com/repos/g0g11/test/git/trees{/sha}\",\n    \"statuses_url\": \"https://api.github.com/repos/g0g11/test/statuses/{sha}\",\n    \"languages_url\": \"https://api.github.com/repos/g0g11/test/languages\",\n    \"stargazers_url\": \"https://api.github.com/repos/g0g11/test/stargazers\",\n    \"contributors_url\": \"https://api.github.com/repos/g0g11/test/contributors\",\n    \"subscribers_url\": \"https://api.github.com/repos/g0g11/test/subscribers\",\n    \"subscription_url\": \"https://api.github.com/repos/g0g11/test/subscription\",\n    \"commits_url\": \"https://api.github.com/repos/g0g11/test/commits{/sha}\",\n    \"git_commits_url\": \"https://api.github.com/repos/g0g11/test/git/commits{/sha}\",\n    \"comments_url\": \"https://api.github.com/repos/g0g11/test/comments{/number}\",\n    \"issue_comment_url\": \"https://api.github.com/repos/g0g11/test/issues/comments{/number}\",\n    \"contents_url\": \"https://api.github.com/repos/g0g11/test/contents/{+path}\",\n    \"compare_url\": \"https://api.github.com/repos/g0g11/test/compare/{base}...{head}\",\n    \"merges_url\": \"https://api.github.com/repos/g0g11/test/merges\",\n    \"archive_url\": \"https://api.github.com/repos/g0g11/test/{archive_format}{/ref}\",\n    \"downloads_url\": \"https://api.github.com/repos/g0g11/test/downloads\",\n    \"issues_url\": \"https://api.github.com/repos/g0g11/test/issues{/number}\",\n    \"pulls_url\": \"https://api.github.com/repos/g0g11/test/pulls{/number}\",\n    \"milestones_url\": \"https://api.github.com/repos/g0g11/test/milestones{/number}\",\n    \"notifications_url\": \"https://api.github.com/repos/g0g11/test/notifications{?since,all,participating}\",\n    \"labels_url\": \"https://api.github.com/repos/g0g11/test/labels{/name}\",\n    \"releases_url\": \"https://api.github.com/repos/g0g11/test/releases{/id}\",\n    \"deployments_url\": \"https://api.github.com/repos/g0g11/test/deployments\",\n    \"created_at\": \"2018-05-04T18:41:01Z\",\n    \"updated_at\": \"2018-05-07T08:58:24Z\",\n    \"pushed_at\": \"2018-05-07T12:43:13Z\",\n    \"git_url\": \"git://github.com/g0g11/test.git\",\n    \"ssh_url\": \"git@github.com:g0g11/test.git\",\n    \"clone_url\": \"https://github.com/g0g11/test.git\",\n    \"svn_url\": \"https://github.com/g0g11/test\",\n    \"homepage\": null,\n    \"size\": 1,\n    \"stargazers_count\": 0,\n    \"watchers_count\": 0,\n    \"language\": null,\n    \"has_issues\": true,\n    \"has_projects\": true,\n    \"has_downloads\": true,\n    \"has_wiki\": true,\n    \"has_pages\": false,\n    \"forks_count\": 0,\n    \"mirror_url\": null,\n    \"archived\": false,\n    \"open_issues_count\": 4,\n    \"license\": null,\n    \"forks\": 0,\n    \"open_issues\": 4,\n    \"watchers\": 0,\n    \"default_branch\": \"master\"\n  },\n  \"sender\": {\n    \"login\": \"g0g11\",\n    \"id\": 16637843,\n    \"avatar_url\": \"https://avatars2.githubusercontent.com/u/16637843?v=4\",\n    \"gravatar_id\": \"\",\n    \"url\": \"https://api.github.com/users/g0g11\",\n    \"html_url\": \"https://github.com/g0g11\",\n    \"followers_url\": \"https://api.github.com/users/g0g11/followers\",\n    \"following_url\": \"https://api.github.com/users/g0g11/following{/other_user}\",\n    \"gists_url\": \"https://api.github.com/users/g0g11/gists{/gist_id}\",\n    \"starred_url\": \"https://api.github.com/users/g0g11/starred{/owner}{/repo}\",\n    \"subscriptions_url\": \"https://api.github.com/users/g0g11/subscriptions\",\n    \"organizations_url\": \"https://api.github.com/users/g0g11/orgs\",\n    \"repos_url\": \"https://api.github.com/users/g0g11/repos\",\n    \"events_url\": \"https://api.github.com/users/g0g11/events{/privacy}\",\n    \"received_events_url\": \"https://api.github.com/users/g0g11/received_events\",\n    \"type\": \"User\",\n    \"site_admin\": false\n  }\n}"
+				},
+				"url": {
+					"raw": "{{url}}/webhooks",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"webhooks"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET /pullrequests",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token}}"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "{{url}}/pullrequests",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"pullrequests"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET /repos",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token}}"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "{{url}}/repos",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"repos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET /repos/:id/pullrequests",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token}}"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "{{url}}/repos/5af4840e0449c1189cb084f6/pullrequests",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"repos",
+						"5af4840e0449c1189cb084f6",
+						"pullrequests"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET /user/me",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token}}"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "{{url}}/user/me",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"user",
+						"me"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET /pullrequests/count",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token}}"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "{{url}}/pullrequests/count",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"pullrequests",
+						"count"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET /auth/github",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "831f28f7-8ce7-4fb2-b93a-18c64facdf5c",
+						"type": "text/javascript",
+						"exec": [
+							"const token = pm.response.json();",
+							"postman.setEnvironmentVariable('token', `JWT ${token.token}`)",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "accessToken",
+							"value": "0c92c423698afe21dfab9b5c0dcdbe621574dda9",
+							"type": "string"
+						},
+						{
+							"key": "tokenType",
+							"value": "bearer",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "{{url}}/auth/github",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"auth",
+						"github"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET /auth/github/private",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "831f28f7-8ce7-4fb2-b93a-18c64facdf5c",
+						"type": "text/javascript",
+						"exec": [
+							"const token = pm.response.json();",
+							"postman.setEnvironmentVariable('token', `JWT ${token.token}`)",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "accessToken",
+							"value": "591d719792c23b0e49763f9f35118cbe50b39a98",
+							"type": "string"
+						},
+						{
+							"key": "tokenType",
+							"value": "bearer",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "{{url}}/v1/auth/github/private",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"v1",
+						"auth",
+						"github",
+						"private"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PATCH /repos/:id/enable",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token}}"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "{{url}}/repos/5af4840e0449c1189cb084ea/enable",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"repos",
+						"5af4840e0449c1189cb084ea",
+						"enable"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PATCH /repos/:id/color",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"color\": \"#c2c2c1\"\n}"
+				},
+				"url": {
+					"raw": "{{url}}/repos/5af984daac2cdd112a5c1913/color",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"repos",
+						"5af984daac2cdd112a5c1913",
+						"color"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PATCH /repos/:id/disable",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token}}"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "{{url}}/repos/5af4840e0449c1189cb084ea/disable",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"repos",
+						"5af4840e0449c1189cb084ea",
+						"disable"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PATCH /pullrequests/:id/seen",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token}}"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "{{url}}/repos/5af4840e0449c1189cb084ea/disable",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"repos",
+						"5af4840e0449c1189cb084ea",
+						"disable"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

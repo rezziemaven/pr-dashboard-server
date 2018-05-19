@@ -21,6 +21,9 @@ To deploy the Pull Request Dashboard to Heroku, follow the following steps:
 ## API
 To use the API, you can check the documentation [here](https://prdashboard1.docs.apiary.io/).
 
+## Postman
+Here you can download the Postman Collection to test the routes - [Download Collection](./_docs/PR-Dashboard.postman_collection.json)
+
 ## Tech Stack
 * [Node JS](https://nodejs.org/en/)
 * [Express JS](http://expressjs.com/)
