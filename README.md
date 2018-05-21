@@ -1,35 +1,55 @@
 # Pull Request Dashboard
 
+<div align="center">
+ <img src="https://raw.githubusercontent.com/g0g11/pr-dashboard-client/develop/public/assets/PuRe.png"></img>
+</div>
+
+Pure Dashboard is a web application to filter and follow the pull requests of interest from your own GitHub Repositories.
+
 ## Usage
 
 #### Development Environment
+
 * Make sure you have an instance of [MongoDB](https://www.mongodb.com/) running or use a external Mongo Database Provider.
-* Clone the repository with ``git clone <repository url>``
-* Install the dependencies ``yarn install``
-* Create a ``.env`` file in the root folder with the required keys. You can find an example in ``.env.example``.
-* To fetch all initial information from GitHub execute ``node ./bin/cronjob.js``
- 
+* Clone the repository with `git clone <repository url>`
+* Install the dependencies `yarn install`
+* Create a `.env` file in the root folder with the required keys. You can find an example in `.env.example`.
+* To fetch all initial information from GitHub execute `node ./bin/cronjob.js`
+
 #### Deploy to Heroku
+
 To deploy the Pull Request Dashboard to Heroku, follow the following steps:
+
 * Install [Heroku CLI](https://devcenter.heroku.com/articles/heroku-command-line)
-* Change to project directory and be sure to login with your Heroku credentials ``heroku login``
-* Add the Heroku Remote Repository to your git config ``heroku git:remote -a pr-dashboard-server``
-* Push the repository to Heroku ``git push heroku master``
+* Change to project directory and be sure to login with your Heroku credentials `heroku login`
+* Add the Heroku Remote Repository to your git config `heroku git:remote -a pr-dashboard-server`
+* Push the repository to Heroku `git push heroku master`
 * Add Config variables on Heroku. Select Project > Settings > Config Vars. You can compare the config variables with .env.example.
-* Install [Heroku Scheduler](https://devcenter.heroku.com/articles/scheduler) as an Add-on in your Heroku Environment. Add ``cronjob.js`` (only the filename, NOT the full path) to the scheduler to be executed every 10 minutes. 
+* Install [Heroku Scheduler](https://devcenter.heroku.com/articles/scheduler) as an Add-on in your Heroku Environment. Add `cronjob.js` (only the filename, NOT the full path) to the scheduler to be executed every 10 minutes.
 
 ## API
+
 To use the API, you can check the documentation [here](https://prdashboard1.docs.apiary.io/).
 
 ## Postman
+
 Here you can download the Postman Collection to test the routes - [Download Collection](./_docs/PR-Dashboard.postman_collection.json)
 
+## Screenshots
+
+<div align="center">
+ <img src="https://raw.githubusercontent.com/g0g11/pr-dashboard-client/develop/public/assets/repositories.png"></img>
+ <img src="https://raw.githubusercontent.com/g0g11/pr-dashboard-client/develop/public/assets/pullrequests.png"></img>
+</div>
+
 ## Tech Stack
+
 * [Node JS](https://nodejs.org/en/)
 * [Express JS](http://expressjs.com/)
 * [Mongoose](http://mongoosejs.com/)
 
 ## Team
+
 Carmelo Carrillo - [GitHub](https://github.com/carrmelo)
 
 Dave Martínez - [GitHub](https://github.com/dkm-coder)
