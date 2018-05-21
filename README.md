@@ -1,7 +1,7 @@
 # Pull Request Dashboard
 
 <div align="center">
- <img src="https://github.com/g0g11/pr-dashboard-client/tree/develop/public/assets/PuRe.png"></img>
+ <img src="https://raw.githubusercontent.com/g0g11/pr-dashboard-client/develop/public/assets/PuRe.png"></img>
 </div>
 
 Pure Dashboard is a web application to filter and follow the pull requests of interest from your own GitHub Repositories.
@@ -38,8 +38,8 @@ Here you can download the Postman Collection to test the routes - [Download Coll
 ## Screenshots
 
 <div align="center">
- <img src="https://github.com/g0g11/pr-dashboard-client/tree/develop/public/assets/repositories.png"></img>
- <img src="https://github.com/g0g11/pr-dashboard-client/tree/develop/public/assets/pullrequests.png"></img>
+ <img src="https://raw.githubusercontent.com/g0g11/pr-dashboard-client/develop/public/assets/repositories.png"></img>
+ <img src="https://raw.githubusercontent.com/g0g11/pr-dashboard-client/develop/public/assets/pullrequests.png"></img>
 </div>
 
 ## Tech Stack
