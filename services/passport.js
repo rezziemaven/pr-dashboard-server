@@ -29,6 +29,7 @@ passport.use(
     async (payload, done) => {
       try {
         const user = await User.findById(payload.sub);
+        console.log(user);
         if (user) {
           done(null, user);
         } else {
@@ -52,7 +53,6 @@ passport.use(
       try {
         const existingUser = await User.findOne({ githubId: profile._json.id });
         if (existingUser) {
-          console.log(existingUser)
           await existingUser.update({ $set: { accessToken } });
           await userController.update(existingUser);
           await repoController.update(existingUser);
@@ -72,7 +72,9 @@ passport.use(
         }).save();
         await userController.update(user);
         await repoController.update(user);
+        console.log('created user');
         done(null, user);
+
       } catch (e) {
         return done(e, false);
       }
