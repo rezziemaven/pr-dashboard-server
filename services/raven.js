@@ -5,7 +5,10 @@ const Raven = require('raven');
 const keys = require('../config/keys');
 
 // Error notifications
-Raven.config(keys.sentryDsn).install();
-
-app.use(Raven.requestHandler());
-app.use(Raven.errorHandler());
+if (keys.sentryDsn) {
+  Raven.config(keys.sentryDsn).install();
+  app.use(Raven.requestHandler());
+  app.use(Raven.errorHandler());
+} else {
+  console.log("no sentry DSN for you")
+}

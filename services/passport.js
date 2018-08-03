@@ -52,12 +52,13 @@ passport.use(
       try {
         const existingUser = await User.findOne({ githubId: profile._json.id });
         if (existingUser) {
+          console.log(existingUser)
           await existingUser.update({ $set: { accessToken } });
           await userController.update(existingUser);
           await repoController.update(existingUser);
           return done(null, existingUser);
         }
-
+        console.log("MAKING USER")
         const user = await new User({
           githubId: profile._json.id,
           loginName: profile._json.login,
