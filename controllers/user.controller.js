@@ -1,8 +1,8 @@
-const mongoose = require('mongoose');
-const User = mongoose.model('users');
+// const mongoose = require('mongoose');
+const User = require('../models/User.js');
 const Raven = require('raven');
 const axios = require('axios');
-const keys = require('../config/keys');
+// const keys = require('../config/keys');
 
 require('../services/raven');
 
@@ -20,7 +20,7 @@ module.exports.me = async (req, res) => {
     );
     res.status(200).send(me);
   } catch (e) {
-    Raven.captureException(e);
+    //Raven.captureException(e);
     res.status(400).send(e);
   }
 };

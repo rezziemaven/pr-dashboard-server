@@ -10,24 +10,26 @@
   "scripts": {
     "dev": "nodemon server.js",
     "start": "node server.js",
-    "test": "jest",
-    "testwatcher": "test --watchAll"
+    "test": "mocha ./test/tests"
   },
   "dependencies": {
     "axios": "^0.18.0",
     "body-parser": "^1.18.2",
+    "chai": "^4.1.2",
     "cors": "^2.8.4",
     "dotenv": "^5.0.1",
     "express": "^4.16.3",
-    "jest": "^23.4.2",
     "jsonwebtoken": "^8.2.1",
+    "mocha": "^5.2.0",
     "mongoose": "^5.0.17",
     "morgan": "^1.9.0",
     "node-fetch": "^2.1.2",
     "passport": "^0.4.0",
     "passport-github2": "^0.1.11",
     "passport-jwt": "^4.0.0",
+    "proxyquire": "^2.0.1",
     "raven": "^2.6.0",
+    "sinon": "^6.1.4",
     "socket.io": "^2.1.0"
   },
   "engines": {
