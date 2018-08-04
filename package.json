@@ -7,12 +7,19 @@
   "author": "g0g11 <goran.plavsic@gmail.com>",
   "license": "MIT",
   "private": false,
+  "scripts": {
+    "dev": "nodemon server.js",
+    "start": "node server.js",
+    "test": "jest",
+    "testwatcher": "test --watchAll"
+  },
   "dependencies": {
     "axios": "^0.18.0",
     "body-parser": "^1.18.2",
     "cors": "^2.8.4",
     "dotenv": "^5.0.1",
     "express": "^4.16.3",
+    "jest": "^23.4.2",
     "jsonwebtoken": "^8.2.1",
     "mongoose": "^5.0.17",
     "morgan": "^1.9.0",
