@@ -12,6 +12,8 @@ require('../services/raven');
 
 module.exports.newEvent = async (req, res) => {
   // First message to test the Webhook from Github
+  console.log("I'm a new event!");
+  console.log(req.body);
   if (req.body.zen && req.body.hook) return res.status(200).send();
   if (!req.body.pull_request && req.body.comment) {
     const comment = await Pullrequest.findOne({
@@ -25,7 +27,7 @@ module.exports.newEvent = async (req, res) => {
       githubId: req.body.repository.owner.id,
     });
 
-    const newPulls = await Pullrequest.find({ owner: owner._id });
+    const newPulls = await Pullrequest.find({ closed_at: null });
 
     owner.socket.forEach(client => {
       io.to(client.socketId).emit('message', {
@@ -94,7 +96,7 @@ module.exports.newEvent = async (req, res) => {
         $push: { _pullRequests: { pullRequest: pullrequest._id } },
       });
 
-      const newPulls = await Pullrequest.find({ owner: owner._id });
+      const newPulls = await Pullrequest.find({ closed_at: null });
 
       owner.socket.forEach(client => {
         io.to(client.socketId).emit('message', {
@@ -111,7 +113,7 @@ module.exports.newEvent = async (req, res) => {
   } else {
     try {
       await existPullrequest.update(values);
-      const newPulls = await Pullrequest.find({ owner: owner._id });
+      const newPulls = await Pullrequest.find({ closed_at: null });
 
       owner.socket.forEach(client => {
         io.to(client.socketId).emit('message', {

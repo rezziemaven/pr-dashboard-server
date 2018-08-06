@@ -52,11 +52,11 @@ module.exports.update = async (repo, user) => {
 
   fetchPulls.data.forEach(async pull => {
     // console.log(pull);
-    const comments = await axios.get(pull.comments_url, axiosConfig)
-    // console.log("COMMENTS", comments.data.length)
-    const commentsBody = comments.data.map(comment => comment.body)
+    // const comments = await axios.get(pull.comments_url, axiosConfig)
+    // // console.log("COMMENTS", comments.data.length)
+    // const commentsBody = comments.data.map(comment => comment.body)
     // console.log("COMMENT BODY", commentsBody)
-    
+
     const values = {
       githubId: pull.id,
       number: pull.number,
@@ -65,8 +65,8 @@ module.exports.update = async (repo, user) => {
       state: pull.state,
       title: pull.title,
       comment: pull.body,
-      comments: comments.data.length,
-      commentsBody: commentsBody,
+      comments: pull.comments || 0,
+      // commentsBody: commentsBody,
       owner: user._id,
       repository: repo._id,
       user: {
@@ -88,31 +88,9 @@ module.exports.update = async (repo, user) => {
           githubId: pull.id
         },
         {
-          $set: {
-            githubId: pull.id,
-            number: pull.number,
-            webUrl: pull.html_url,
-            apiUrl: pull.url,
-            state: pull.state,
-            title: pull.title,
-            comment: pull.body,
-            comments: comments.data.length,
-            commentsBody: commentsBody,
-            owner: user._id,
-            repository: repo._id,
-            user: {
-              githubId: pull.user.id,
-              loginName: pull.user.login,
-              picture: pull.user.avatar_url,
-              apiUrl: pull.user.url,
-              webUrl: pull.user.html_url,
-            },
-            created_at: pull.created_at,
-            updated_at: pull.updated_at,
-            closed_at: pull.closed_at,
-            merged_at: pull.merged_at,
-          }
-        }
+          $set: values
+        },
+        {new: true}
       )
     } else {
       await new Pullrequest(values).save();
