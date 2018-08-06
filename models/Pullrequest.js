@@ -10,7 +10,8 @@ const pullrequestSchema = new Schema({
   state: { type: String, required: true },
   title: { type: String },
   comment: { type: String },
-  comments: { type: String },
+  comments: { type: Number },
+  commentsBody: [String],
   owner: { type: Schema.Types.ObjectId, ref: 'users' },
   seen: { type: Boolean, default: false },
   user: {
