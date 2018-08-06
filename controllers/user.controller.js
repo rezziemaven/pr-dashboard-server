@@ -1,5 +1,5 @@
-const mongoose = require('mongoose');
-const User = mongoose.model('users');
+
+const User = require('../models/User.js');
 const Raven = require('raven');
 const axios = require('axios');
 const keys = require('../config/keys');
@@ -43,9 +43,11 @@ module.exports.private = async (req, res, next) => {
 module.exports.update = async user => {
   const USER_EMAIL = '/user/emails';
   try {
+    console.log('in here')
     const axiosConfig = {
       headers: { Authorization: 'token ' + user.accessToken },
     };
+    console.log(user.accessToken);
     const fetchEmail = await axios.get(
       `${keys.githubBaseUrl}${USER_EMAIL}`,
       axiosConfig,

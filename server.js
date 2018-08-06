@@ -47,7 +47,10 @@ app.use(passport.initialize());
 require('./routes/routes')(app);
 
 // Server running process
-const PORT = process.env.PORT || 5000;
+// const PORT = process.env.PORT || 5000;
+//devmode
+const PORT = 5000
+
 const ENV = process.env.NODE_ENV || 'development';
 
 http.listen(PORT, () =>

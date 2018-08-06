@@ -27,4 +27,4 @@ const repositorySchema = new Schema({
   synced_at: { type: Date, default: Date.now },
 });
 
-mongoose.model('repositories', repositorySchema);
+module.exports = mongoose.model('repositories', repositorySchema);

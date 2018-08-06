@@ -13,4 +13,4 @@ module.exports = {
   jsonWebTokenAudience: process.env.JSON_WEB_TOKEN_AUDIENCE,
   sentryDsn: process.env.SENTRY_DSN,
   clientUrl: process.env.CLIENT_URL,
-};
+}//;

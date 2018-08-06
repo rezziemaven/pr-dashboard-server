@@ -7,6 +7,11 @@
   "author": "g0g11 <goran.plavsic@gmail.com>",
   "license": "MIT",
   "private": false,
+  "scripts": {
+    "dev": "nodemon server.js",
+    "start": "node server.js",
+    "test": "mocha ./test/tests"
+  },
   "dependencies": {
     "axios": "^0.18.0",
     "body-parser": "^1.18.2",
@@ -14,16 +19,23 @@
     "dotenv": "^5.0.1",
     "express": "^4.16.3",
     "jsonwebtoken": "^8.2.1",
+    "mocha": "^5.2.0",
     "mongoose": "^5.0.17",
     "morgan": "^1.9.0",
     "node-fetch": "^2.1.2",
     "passport": "^0.4.0",
     "passport-github2": "^0.1.11",
     "passport-jwt": "^4.0.0",
+    "proxyquire": "^2.0.1",
     "raven": "^2.6.0",
     "socket.io": "^2.1.0"
   },
   "engines": {
     "node": "8.11.1"
+  },
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "sinon": "^6.1.4"
+    "rewire": "^4.0.1"
   }
 }

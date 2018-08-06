@@ -27,4 +27,4 @@ const pullrequestSchema = new Schema({
   merged_at: { type: Date, default: null },
 });
 
-mongoose.model('pullrequests', pullrequestSchema);
+module.exports = mongoose.model('pullrequests', pullrequestSchema);

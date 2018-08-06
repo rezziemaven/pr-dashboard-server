@@ -17,4 +17,4 @@ const organisationSchema = new Schema({
   updated_at: { type: Date, default: Date.now },
 });
 
-mongoose.model('organisations', organisationSchema);
+module.exports = mongoose.model('organisations', organisationSchema);
