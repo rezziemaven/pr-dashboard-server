@@ -1,46 +1,79 @@
-const { describe, it, afterEach } = require('mocha');
+const { describe, it, afterEach, called } = require('mocha');
 const { expect, assert, should } = require('chai')
 const proxyquire = require('proxyquire');
 const sinon = require('sinon');
-const githubAuthControllers  = require('../../controllers/auth.github.controller')
+const rewire = require('rewire')
+const githubAuthControllers  = rewire('../../controllers/auth.github.controller')
 
 
 describe('auth.github.controllers - tests', () => {
 
-  const passport = sinon.stub()
-  // githubAuthControllers = proxyquire
-  //   .noCallThru()
-  //   .load('../../controllers/auth.github.controllers.js', stub)
-  
-  it('.auth should be called', () => {
-    expect(githubAuthControllers.auth).to.be.ok
-  })
+  beforeEach(() => {
 
-  it('.auth should return an authentication function', () => {
-    const authenticate = githubAuthControllers.auth()
-    expect(typeof(authenticate)).to.equal('function')
+    this.passport = {
+      authenticate: sinon.spy()
+    }
+    githubAuthControllers.__set__('passport', this.passport)
+
   })
 
 
 
-  it('.private should be called', () => {
-    expect(githubAuthControllers.private).to.be.ok
+  describe('auth function',() => {
+
+    it('.auth should be called', () => {
+      expect(githubAuthControllers.auth).to.be.ok
+    })
+
+    it('.auth should return an authentication function', () => {
+      const _this = this
+      const authenticate = githubAuthControllers.auth()
+      expect(_this.passport.authenticate.callCount).to.equal(1)
+    })
+
+    it('should get authenticated with "github"', () => {
+      const _this = this
+      const authenticate = githubAuthControllers.auth()
+      expect(_this.passport.authenticate.calledWith('github')).to.equal(true)
+    })
   })
 
-  it('.auth should return an authentication function', () => {
-    const authenticate = githubAuthControllers.private()
-    expect(typeof(authenticate)).to.equal('function')
+  describe('private function',() => {
+
+    it('.private should be called', () => {
+      expect(githubAuthControllers.private).to.be.ok
+    })
+
+    it('.auth should return an authentication function', () => {
+      const _this = this
+      const authenticate = githubAuthControllers.private()
+      expect(_this.passport.authenticate.callCount).to.equal(1)
+    })
+
+    it('should get authenticated with "github"', () => {
+      const _this = this
+      const authenticate = githubAuthControllers.auth()
+      expect(_this.passport.authenticate.calledWith('github')).to.equal(true)
+    })
   })
 
+  describe('callback function',() => {
 
+    it('.callback should be called', () => {
+      expect(githubAuthControllers.callback).to.be.ok
+    })
 
-  it('.callback should be called', () => {
-    expect(githubAuthControllers.callback).to.be.ok
-  })
+    it('.auth should return an authentication function', () => {
+      const _this = this
+      const authenticate = githubAuthControllers.callback()
+      expect(_this.passport.authenticate.callCount).to.equal(1)
+    })
 
-  it('.auth should return an authentication function', () => {
-    const authenticate = githubAuthControllers.callback()
-    expect(typeof(authenticate)).to.equal('function')
+    it('should get authenticated with "github"', () => {
+      const _this = this
+      const authenticate = githubAuthControllers.auth()
+      expect(_this.passport.authenticate.calledWith('github')).to.equal(true)
+    })
   })
 
 
