@@ -1,5 +1,4 @@
-const mongoose = require('mongoose');
-const Pullrequest = mongoose.model('pullrequests');
+const Pullrequest = require('../models/Pullrequest.js')
 const Raven = require('raven');
 const axios = require('axios');
 
