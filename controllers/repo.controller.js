@@ -36,7 +36,7 @@ module.exports.listPullrequests = async (req, res) => {
   try {
     const pullrequests = await Repository.find(
       {
-        owner: req.user.id,
+        // owner: req.user.id,
         _id: req.params.id,
       },
       {
@@ -86,7 +86,7 @@ module.exports.update = async user => {
       githubId: allRepos.id,
     });
 
-    console.log("existing repo", existingRepo)
+    // console.log("existing repo", existingRepo)
 
     const values = {
       githubId: allRepos.id,

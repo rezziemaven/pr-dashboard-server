@@ -5,11 +5,11 @@ const axios = require('axios');
 require('../services/raven');
 
 module.exports.listAll = async (req, res) => {
-
-  console.log("IAMBEINGCALLLEDEDEDED")
   try {
     const pullrequests = await Pullrequest.find(
-      { owner: req.user.id, closed_at: null },
+      {
+        closed_at: null
+      },
       {
         user: true,
         closed_at: true,
@@ -35,8 +35,7 @@ module.exports.listAll = async (req, res) => {
       description: true,
       color: true,
       language: true,
-    });
-    // console.log("PULL REQS", pullrequests)
+    }).sort([['created_at', 'ascending']]);
     res.status(200).send(pullrequests);
   } catch (e) {
     Raven.captureException(e);
@@ -45,12 +44,10 @@ module.exports.listAll = async (req, res) => {
 };
 
 module.exports.update = async (repo, user) => {
-  console.log("BEING CALLED")
   const axiosConfig = {
     headers: { Authorization: 'token ' + user.accessToken },
   };
   const fetchPulls = await axios.get(repo.pullUrl, axiosConfig);
-  console.log(fetchPulls)
 
   fetchPulls.data.forEach(async pull => {
     const values = {
@@ -86,7 +83,6 @@ module.exports.seen = async (req, res) => {
     await Pullrequest.findOneAndUpdate(
       {
         _id: req.params.id,
-        owner: req.user.id,
       },
       { $set: { seen: true } },
     );
@@ -100,7 +96,6 @@ module.exports.seen = async (req, res) => {
 module.exports.count = async (req, res) => {
   try {
     const count = await Pullrequest.find({
-      owner: req.user.id,
       seen: false,
     });
     res.status(200).send({ count: count.length });
