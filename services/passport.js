@@ -7,7 +7,7 @@ const keys = require('../config/keys');
 const userController = require('../controllers/user.controller');
 const repoController = require('../controllers/repo.controller');
 
-const User = mongoose.model('users');
+const User = require('../models/User.js')
 
 passport.serializeUser((user, done) => {
   done(null, user.id);

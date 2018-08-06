@@ -4,7 +4,7 @@ const http = require('http').createServer(app);
 const io = require('socket.io')(http);
 const mongoose = require('mongoose');
 require('./models/User');
-const User = mongoose.model('users');
+const User = require('./models/User.js');
 
 let socket;
 

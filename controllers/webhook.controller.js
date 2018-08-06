@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
-const Pullrequest = mongoose.model('pullrequests');
-const Repository = mongoose.model('repositories');
-const User = mongoose.model('users');
+const Pullrequest = require('../models/Pullrequest.js');
+const Repository = require('../models/Repository.js');
+const User = require('../models/User.js');
 const keys = require('../config/keys');
 const Raven = require('raven');
 const { io } = require('../setupServer');
