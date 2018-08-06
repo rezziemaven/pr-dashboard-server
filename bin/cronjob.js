@@ -13,7 +13,7 @@ require('../models/Pullrequest');
 const userController = require('../controllers/user.controller');
 const repoController = require('../controllers/repo.controller');
 
-const User = mongoose.model('users');
+const User = require('../models/User.js');
 
 // Connect to MongoDB
 mongoose.connect(keys.mongoURI);

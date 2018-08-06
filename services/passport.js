@@ -8,7 +8,7 @@ const userController = require('../controllers/user.controller');
 const repoController = require('../controllers/repo.controller');
 const pullRequestController = require('../controllers/pullrequest.controller')
 
-const User = mongoose.model('users');
+const User = require('../models/User.js')
 
 passport.serializeUser((user, done) => {
   done(null, user.id);
@@ -60,7 +60,6 @@ passport.use(
 
           return done(null, existingUser);
         }
-        console.log("MAKING USER")
         const user = await new User({
           githubId: profile._json.id,
           loginName: profile._json.login,
@@ -75,8 +74,6 @@ passport.use(
         await userController.update(user);
         await repoController.update(user);
 
-
-        console.log('created user');
         done(null, user);
 
       } catch (e) {
