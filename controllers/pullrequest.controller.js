@@ -5,6 +5,8 @@ const axios = require('axios');
 require('../services/raven');
 
 module.exports.listAll = async (req, res) => {
+
+  console.log("IAMBEINGCALLLEDEDEDED")
   try {
     const pullrequests = await Pullrequest.find(
       { owner: req.user.id, closed_at: null },
@@ -34,6 +36,7 @@ module.exports.listAll = async (req, res) => {
       color: true,
       language: true,
     });
+    // console.log("PULL REQS", pullrequests)
     res.status(200).send(pullrequests);
   } catch (e) {
     Raven.captureException(e);
@@ -42,10 +45,12 @@ module.exports.listAll = async (req, res) => {
 };
 
 module.exports.update = async (repo, user) => {
+  console.log("BEING CALLED")
   const axiosConfig = {
     headers: { Authorization: 'token ' + user.accessToken },
   };
   const fetchPulls = await axios.get(repo.pullUrl, axiosConfig);
+  console.log(fetchPulls)
 
   fetchPulls.data.forEach(async pull => {
     const values = {
