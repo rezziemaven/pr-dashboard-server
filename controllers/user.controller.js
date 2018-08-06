@@ -43,7 +43,6 @@ module.exports.private = async (req, res, next) => {
 module.exports.update = async user => {
   const USER_EMAIL = '/user/emails';
   try {
-    console.log('in here')
     const axiosConfig = {
       headers: { Authorization: 'token ' + user.accessToken },
     };
