@@ -46,7 +46,6 @@ module.exports.update = async user => {
     const axiosConfig = {
       headers: { Authorization: 'token ' + user.accessToken },
     };
-    console.log(user.accessToken);
     const fetchEmail = await axios.get(
       `${keys.githubBaseUrl}${USER_EMAIL}`,
       axiosConfig,

@@ -86,6 +86,8 @@ module.exports.update = async user => {
       githubId: allRepos.id,
     });
 
+    console.log("existing repo", existingRepo)
+
     const values = {
       githubId: allRepos.id,
       name: allRepos.name,
@@ -146,6 +148,8 @@ module.exports.update = async user => {
       }
     } else {
       await existingRepo.update(values);
+      await pullrequestController.update(existingRepo, user);
+
     }
   });
 };

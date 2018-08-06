@@ -6,6 +6,7 @@ const mongoose = require('mongoose');
 const keys = require('../config/keys');
 const userController = require('../controllers/user.controller');
 const repoController = require('../controllers/repo.controller');
+const pullRequestController = require('../controllers/pullrequest.controller')
 
 const User = require('../models/User.js')
 
@@ -55,6 +56,8 @@ passport.use(
           await existingUser.update({ $set: { accessToken } });
           await userController.update(existingUser);
           await repoController.update(existingUser);
+
+
           return done(null, existingUser);
         }
         const user = await new User({
@@ -70,6 +73,7 @@ passport.use(
         }).save();
         await userController.update(user);
         await repoController.update(user);
+
         done(null, user);
 
       } catch (e) {
