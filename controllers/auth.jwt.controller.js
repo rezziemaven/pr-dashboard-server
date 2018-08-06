@@ -6,7 +6,7 @@ function generateAccessToken(userId) {
   const issuer = keys.jsonWebTokenIssuer;
   const audience = keys.jsonWebTokenAudience;
   const secret = keys.jsonWebTokenSecret;
-
+  console.log(issuer, audience, secret)
   const token = jwt.sign({}, secret, {
     expiresIn,
     audience,
