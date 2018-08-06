@@ -72,6 +72,7 @@ module.exports.listPullrequests = async (req, res) => {
 };
 
 module.exports.update = async user => {
+  console.log("being called")
   const axiosConfig = {
     headers: { Authorization: 'token ' + user.accessToken },
   };
@@ -85,8 +86,6 @@ module.exports.update = async user => {
     const existingRepo = await Repository.findOne({
       githubId: allRepos.id,
     });
-
-    console.log("existing repo", existingRepo)
 
     const values = {
       githubId: allRepos.id,
