@@ -11,7 +11,7 @@ const pullrequestSchema = new Schema({
   title: { type: String },
   comment: { type: String },
   comments: { type: Number },
-  // commentsBody: [String],
+  commentsBody: [String],
   owner: { type: Schema.Types.ObjectId, ref: 'users' },
   seen: { type: Boolean, default: false },
   user: {

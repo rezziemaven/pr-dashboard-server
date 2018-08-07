@@ -12,9 +12,11 @@ require('../services/raven');
 
 module.exports.newEvent = async (req, res) => {
   // First message to test the Webhook from Github
-  console.log("I'm a new event!");
+  // console.log("I'm a new event!");
   // console.log(req.body);
   if (req.body.zen && req.body.hook) return res.status(200).send();
+  console.log("PULL", req.body.pull_request)
+  console.log("comment", req.body.comment) 
   if (!req.body.pull_request && req.body.comment) {
     const comment = await Pullrequest.findOne({
       apiUrl: req.body.issue.pull_request.url,
@@ -24,7 +26,7 @@ module.exports.newEvent = async (req, res) => {
     });
 
 
-    console.log(comment)
+    // console.log(comment)
 
     const owner = await User.findOne({
       githubId: req.body.repository.owner.id,
