@@ -1,40 +1,78 @@
 const Pullrequest = require('../models/Pullrequest.js')
+const Repository = require('../models/Repository')
 const Raven = require('raven');
 const axios = require('axios');
 
 require('../services/raven');
 
 module.exports.listAll = async (req, res) => {
+  // const userId =  req.user.githubI;
+  // const repos = await Repository.find({})
+ 
   try {
-    const pullrequests = await Pullrequest.find(
-      { closed_at: null },
-      {
-        user: true,
-        closed_at: true,
-        merged_at: true,
-        created_at: true,
-        updated_at: true,
-        action: true,
-        number: true,
-        webUrl: true,
-        state: true,
-        title: true,
-        review: true,
-        comment: true,
-        comments: true,
-        repository: true,
-        seen: true,
-      },
-    ).populate('repository', {
-      name: true,
-      fullName: true,
-      private: true,
+    const repos = req.user._repositories
+    const pullrequests = await repos.map(repo => {
+       Pullrequest.find ({
+        closed_at: null, repository: repo._id
+    },
+    {
+      user: true,
+      closed_at: true,
+      merged_at: true,
+      created_at: true,
+      updated_at: true,
+      action: true,
+      number: true,
       webUrl: true,
-      description: true,
-      color: true,
-      language: true,
-    }).sort([['created_at','ascending']]);
-    // console.log("PULL REQS", pullrequests)
+      state: true,
+      title: true,
+      review: true,
+      comment: true,
+      comments: true,
+      repository: true,
+      seen: true,
+    },
+  ).populate('repository', {
+    name: true,
+    fullName: true,
+    private: true,
+    webUrl: true,
+    description: true,
+    color: true,
+    language: true,
+  }).sort([['created_at','ascending']])
+});
+    console.log(pullrequests)
+
+
+    // const pullrequests = await Pullrequest.find(
+    //   { closed_at: null, githubId: req.user.githubId },
+    //   {
+    //     user: true,
+    //     closed_at: true,
+    //     merged_at: true,
+    //     created_at: true,
+    //     updated_at: true,
+    //     action: true,
+    //     number: true,
+    //     webUrl: true,
+    //     state: true,
+    //     title: true,
+    //     review: true,
+    //     comment: true,
+    //     comments: true,
+    //     repository: true,
+    //     seen: true,
+    //   },
+    // ).populate('repository', {
+    //   name: true,
+    //   fullName: true,
+    //   private: true,
+    //   webUrl: true,
+    //   description: true,
+    //   color: true,
+    //   language: true,
+    // }).sort([['created_at','ascending']]);
     res.status(200).send(pullrequests);
   } catch (e) {
     Raven.captureException(e);
@@ -43,19 +81,18 @@ module.exports.listAll = async (req, res) => {
 };
 
 module.exports.update = async (repo, user) => {
+
   const axiosConfig = {
     headers: { Authorization: 'token ' + user.accessToken },
   };
   const fetchPulls = await axios.get(repo.pullUrl, axiosConfig);
   // console.log("PULLURL", repo.pullUrl)
   // console.log("FETCHPULLS", fetchPulls)
-
   await Promise.all(fetchPulls.data.map(async pull => {
     // console.log(pull);
     const comments = await axios.get(pull.comments_url, axiosConfig)
     // console.log("COMMENTS", comments.data.length)
     const commentsBody = comments.data.map(comment => comment.body)
-    console.log("COMMENT BODY", commentsBody)
     // console.log("pull", pull)
     const values = {
       githubId: pull.id,

@@ -17,7 +17,10 @@ module.exports.newEvent = async (req, res) => {
   if (req.body.zen && req.body.hook) return res.status(200).send();
   console.log("PULL", req.body.pull_request)
   console.log("comment", req.body.comment) 
+
+
   if (!req.body.pull_request && req.body.comment) {
+    console.log("here in socket land")
     const comment = await Pullrequest.findOne({
       apiUrl: req.body.issue.pull_request.url,
     });
@@ -26,7 +29,7 @@ module.exports.newEvent = async (req, res) => {
     });
 
 
-    // console.log(comment)
+    console.log("REQ BODT REPO", req.body.repository)
 
     const owner = await User.findOne({
       githubId: req.body.repository.owner.id,
@@ -34,12 +37,15 @@ module.exports.newEvent = async (req, res) => {
 
     const newPulls = await Pullrequest.find({ closed_at: null });
 
+    console.log("SOCKET OWNDER", owner)
+
     owner.socket.forEach(client => {
       io.to(client.socketId).emit('message', {
         type: 'pull_request',
         payload: newPulls,
       });
     });
+    
     return res.status(200).send();
   }
 
