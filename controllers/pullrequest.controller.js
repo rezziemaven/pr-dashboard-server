@@ -10,15 +10,6 @@ module.exports.listAll = async (req, res) => {
   try {
     const repositories = await Repository.find({
       owner: req.user.id
-    }, {
-      name: true,
-      fullName: true,
-      private: true,
-      webUrl: true,
-      description: true,
-      hookEnabled: true,
-      color: true,
-      language: true
     });
     let pullrequests = [];
     Promise.all(repositories.map(async repo => {
@@ -132,10 +123,20 @@ module.exports.seen = async (req, res) => {
 
 module.exports.count = async (req, res) => {
   try {
-    const count = await Pullrequest.find({
-      seen: false,
+    const repositories = await Repository.find({
+      owner: req.user.id
     });
-    res.status(200).send({ count: count.length });
+    let count = [];
+    Promise.all(repositories.map(async repo => {
+      const pullrequest = await Pullrequest.find({
+        seen: false,
+        state: 'open',
+        repository: repo.id
+      });
+      if (pullrequest.length > 0) count.push(...pullrequest);
+    })).then(() => {
+      res.status(200).send({ count: count.length });
+    });
   } catch (e) {
     Raven.captureException(e);
     res.status(404).send();
