@@ -1,79 +1,60 @@
-const Pullrequest = require('../models/Pullrequest.js')
-const Repository = require('../models/Repository')
+const Pullrequest = require('../models/Pullrequest.js');
+const Repository = require('../models/Repository.js');
+const repoController = require('./repo.controller.js');
 const Raven = require('raven');
 const axios = require('axios');
 
 require('../services/raven');
 
 module.exports.listAll = async (req, res) => {
-  // const userId =  req.user.githubI;
-  // const repos = await Repository.find({})
- 
   try {
-    const repos = req.user._repositories
-    const pullrequests = await repos.map(repo => {
-       Pullrequest.find ({
-        closed_at: null, repository: repo._id
-    },
-    {
-      user: true,
-      closed_at: true,
-      merged_at: true,
-      created_at: true,
-      updated_at: true,
-      action: true,
-      number: true,
+    const repositories = await Repository.find({
+      owner: req.user.id
+    }, {
+      name: true,
+      fullName: true,
+      private: true,
       webUrl: true,
-      state: true,
-      title: true,
-      review: true,
-      comment: true,
-      comments: true,
-      repository: true,
-      seen: true,
-    },
-  ).populate('repository', {
-    name: true,
-    fullName: true,
-    private: true,
-    webUrl: true,
-    description: true,
-    color: true,
-    language: true,
-  }).sort([['created_at','ascending']])
-});
-    console.log(pullrequests)
-
-
-    // const pullrequests = await Pullrequest.find(
-    //   { closed_at: null, githubId: req.user.githubId },
-    //   {
-    //     user: true,
-    //     closed_at: true,
-    //     merged_at: true,
-    //     created_at: true,
-    //     updated_at: true,
-    //     action: true,
-    //     number: true,
-    //     webUrl: true,
-    //     state: true,
-    //     title: true,
-    //     review: true,
-    //     comment: true,
-    //     comments: true,
-    //     repository: true,
-    //     seen: true,
-    //   },
-    // ).populate('repository', {
-    //   name: true,
-    //   fullName: true,
-    //   private: true,
-    //   webUrl: true,
-    //   description: true,
-    //   color: true,
-    //   language: true,
-    // }).sort([['created_at','ascending']]);
-    res.status(200).send(pullrequests);
+      description: true,
+      hookEnabled: true,
+      color: true,
+      language: true
+    });
+    let pullrequests = [];
+    Promise.all(repositories.map(async repo => {
+      const pullrequest = await Pullrequest.find({
+        closed_at: null,
+        repository: repo.id
+      }, {
+        user: true,
+        closed_at: true,
+        merged_at: true,
+        created_at: true,
+        updated_at: true,
+        action: true,
+        number: true,
+        webUrl: true,
+        state: true,
+        title: true,
+        review: true,
+        comment: true,
+        comments: true,
+        repository: true,
+        seen: true,
+      }, ).populate('repository', {
+        name: true,
+        fullName: true,
+        private: true,
+        webUrl: true,
+        description: true,
+        color: true,
+        language: true,
+      });
+      if (pullrequest.length > 0) pullrequests.push(...pullrequest);
+    })).then(() => {
+      pullrequests.sort((a, b) => a.created_at - b.created_at);
+      res.status(200).send(pullrequests);
+    })
   } catch (e) {
     Raven.captureException(e);
     res.status(400).send(e);
