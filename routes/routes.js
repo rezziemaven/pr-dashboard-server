@@ -7,8 +7,13 @@ const userController = require('../controllers/user.controller');
 const webSocketController = require('../controllers/websockets.controller');
 const githubMiddleware = require('../middleware/github');
 const requireAuth = require('../middleware/requireAuth');
+const testController = require('../test/test.controller.js');
 
 module.exports = app => {
+  // Integration test routes
+  app.get('/test', testController.get);
+  app.post('/test', testController.post);
+
   // Authentication
   app.get('/v1/auth/github', authGithubController.auth());
   app.get('/v1/auth/github/private', authGithubController.private());

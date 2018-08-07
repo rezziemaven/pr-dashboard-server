@@ -82,7 +82,7 @@ module.exports.update = async (repo, user) => {
       merged_at: pull.merged_at,
     };
     const thisPull = await Pullrequest.find({githubId: pull.id})
-    if (thisPull) {
+    if (thisPull.length > 0) {
       await Pullrequest.findOneAndUpdate(
         {
           githubId: pull.id
