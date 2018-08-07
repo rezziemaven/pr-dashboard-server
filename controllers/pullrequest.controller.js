@@ -11,8 +11,8 @@ module.exports.listAll = async (req, res) => {
  
   try {
     const repos = req.user._repositories
-    const pullrequests = await repos.map(repo => {
-       Pullrequest.find ({
+    const pullrequests =  await repos.map(repo => {
+     Pullrequest.find ({
         closed_at: null, repository: repo._id
     },
     {
@@ -42,7 +42,7 @@ module.exports.listAll = async (req, res) => {
     language: true,
   }).sort([['created_at','ascending']])
 });
-    console.log(pullrequests)
+    console.log("PULLS", pullrequests)
 
 
     // const pullrequests = await Pullrequest.find(
