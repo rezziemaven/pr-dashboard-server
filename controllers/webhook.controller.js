@@ -15,8 +15,8 @@ module.exports.newEvent = async (req, res) => {
   // console.log("I'm a new event!");
   // console.log(req.body);
   if (req.body.zen && req.body.hook) return res.status(200).send();
-  console.log("PULL", req.body.pull_request)
-  console.log("comment", req.body.comment) 
+  // console.log("PULL", req.body.pull_request)
+  // console.log("comment", req.body.comment) 
 
 
   if (!req.body.pull_request && req.body.comment) {
@@ -28,8 +28,17 @@ module.exports.newEvent = async (req, res) => {
       $set: { comments: req.body.issue.comments, seen: false },
     });
 
+    const repo = await Repository.findOne({
+      githubId: req.body.repository.id
+    })
+    // console.log("REQ BODT REPO", repo._id)
+    
 
-    console.log("REQ BODT REPO", req.body.repository)
+    const owners = await User.find({
+      _repositories: {$elemMatch: {repository: repo._id}}
+    })
+
+    console.log("OWNDERS", owners)
 
     const owner = await User.findOne({
       githubId: req.body.repository.owner.id,
@@ -37,7 +46,7 @@ module.exports.newEvent = async (req, res) => {
 
     const newPulls = await Pullrequest.find({ closed_at: null });
 
-    console.log("SOCKET OWNDER", owner)
+    // console.log("SOCKET OWNDER", owner)
 
     owner.socket.forEach(client => {
       io.to(client.socketId).emit('message', {
@@ -45,7 +54,7 @@ module.exports.newEvent = async (req, res) => {
         payload: newPulls,
       });
     });
-    
+
     return res.status(200).send();
   }
 
