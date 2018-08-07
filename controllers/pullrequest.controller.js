@@ -1,4 +1,6 @@
-const Pullrequest = require('../models/Pullrequest.js')
+const Pullrequest = require('../models/Pullrequest.js');
+const Repository = require('../models/Repository.js');
+const repoController = require('./repo.controller.js');
 const Raven = require('raven');
 const axios = require('axios');
 
@@ -6,9 +8,24 @@ require('../services/raven');
 
 module.exports.listAll = async (req, res) => {
   try {
-    const pullrequests = await Pullrequest.find(
-      { closed_at: null },
-      {
+    const repositories = await Repository.find({
+      owner: req.user.id
+    }, {
+      name: true,
+      fullName: true,
+      private: true,
+      webUrl: true,
+      description: true,
+      hookEnabled: true,
+      color: true,
+      language: true
+    });
+    let pullrequests = [];
+    Promise.all(repositories.map(async repo => {
+      const pullrequest = await Pullrequest.find({
+        closed_at: null,
+        repository: repo.id
+      }, {
         user: true,
         closed_at: true,
         merged_at: true,
@@ -24,18 +41,20 @@ module.exports.listAll = async (req, res) => {
         comments: true,
         repository: true,
         seen: true,
-      },
-    ).populate('repository', {
-      name: true,
-      fullName: true,
-      private: true,
-      webUrl: true,
-      description: true,
-      color: true,
-      language: true,
-    }).sort([['created_at','ascending']]);
-    // console.log("PULL REQS", pullrequests)
-    res.status(200).send(pullrequests);
+      }, ).populate('repository', {
+        name: true,
+        fullName: true,
+        private: true,
+        webUrl: true,
+        description: true,
+        color: true,
+        language: true,
+      });
+      if (pullrequest.length > 0) pullrequests.push(...pullrequest);
+    })).then(() => {
+      pullrequests.sort((a, b) => a.created_at - b.created_at);
+      res.status(200).send(pullrequests);
+    })
   } catch (e) {
     Raven.captureException(e);
     res.status(400).send(e);
@@ -43,19 +62,18 @@ module.exports.listAll = async (req, res) => {
 };
 
 module.exports.update = async (repo, user) => {
+
   const axiosConfig = {
     headers: { Authorization: 'token ' + user.accessToken },
   };
   const fetchPulls = await axios.get(repo.pullUrl, axiosConfig);
   // console.log("PULLURL", repo.pullUrl)
   // console.log("FETCHPULLS", fetchPulls)
-
   await Promise.all(fetchPulls.data.map(async pull => {
     // console.log(pull);
     const comments = await axios.get(pull.comments_url, axiosConfig)
     // console.log("COMMENTS", comments.data.length)
     const commentsBody = comments.data.map(comment => comment.body)
-    console.log("COMMENT BODY", commentsBody)
     // console.log("pull", pull)
     const values = {
       githubId: pull.id,
