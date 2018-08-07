@@ -12,9 +12,11 @@ require('../services/raven');
 
 module.exports.newEvent = async (req, res) => {
   // First message to test the Webhook from Github
-  console.log("I'm a new event!");
-  console.log(req.body);
+  // console.log("I'm a new event!");
+  // console.log(req.body);
   if (req.body.zen && req.body.hook) return res.status(200).send();
+  console.log("PULL", req.body.pull_request)
+  console.log("comment", req.body.comment) 
   if (!req.body.pull_request && req.body.comment) {
     const comment = await Pullrequest.findOne({
       apiUrl: req.body.issue.pull_request.url,
@@ -22,6 +24,9 @@ module.exports.newEvent = async (req, res) => {
     await comment.update({
       $set: { comments: req.body.issue.comments, seen: false },
     });
+
+
+    // console.log(comment)
 
     const owner = await User.findOne({
       githubId: req.body.repository.owner.id,
@@ -79,12 +84,21 @@ module.exports.newEvent = async (req, res) => {
   const owner = await User.findOne({
     githubId: req.body.repository.owner.id,
   });
+  console.log('exist', existPullrequest)
 
   if (!existPullrequest) {
     try {
-      const repo = await Repository.findOne({
+      let repo = await Repository.findOne({
         githubId: req.body.repository.id,
       });
+      // if(!repo) throw new Error('Repo does not exist');
+      if(!repo) {
+        const {id, owner, ...repoData} = req.body.repository;
+        repo = await Repository.create({
+          githubId: id,
+          ...repoData,
+        });
+      }
 
       values.repository = repo;
       values.owner = owner;
@@ -98,7 +112,7 @@ module.exports.newEvent = async (req, res) => {
 
       const newPulls = await Pullrequest.find({ closed_at: null });
 
-      owner.socket.forEach(client => {
+      owner && owner.socket.forEach(client => {
         io.to(client.socketId).emit('message', {
           type: 'pull_request',
           payload: newPulls,
@@ -107,23 +121,27 @@ module.exports.newEvent = async (req, res) => {
 
       res.status(201).send({ message: 'Pull request created.' });
     } catch (e) {
+      console.error(e);
       Raven.captureException(e);
-      res.status(400).send(e);
+      res.status(400).send({
+        errors: [e.message]
+      });
     }
   } else {
     try {
       await existPullrequest.update(values);
       const newPulls = await Pullrequest.find({ closed_at: null });
 
-      owner.socket.forEach(client => {
+      owner && owner.socket.forEach(client => {
         io.to(client.socketId).emit('message', {
           type: 'pull_request',
           payload: newPulls,
         });
       });
 
-      res.status(201).send({ message: 'Pull request updated.' });
+      res.status(200).send({ message: 'Pull request updated.' });
     } catch (e) {
+      console.error(e);
       Raven.captureException(e);
       res.status(400).send(e);
     }
