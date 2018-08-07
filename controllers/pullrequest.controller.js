@@ -50,7 +50,7 @@ module.exports.update = async (repo, user) => {
   // console.log("PULLURL", repo.pullUrl)
   // console.log("FETCHPULLS", fetchPulls)
 
-  fetchPulls.data.forEach(async pull => {
+  await Promise.all(fetchPulls.data.map(async pull => {
     // console.log(pull);
     // const comments = await axios.get(pull.comments_url, axiosConfig)
     // // console.log("COMMENTS", comments.data.length)
@@ -81,7 +81,7 @@ module.exports.update = async (repo, user) => {
       closed_at: pull.closed_at,
       merged_at: pull.merged_at,
     };
-    let thisPull = await Pullrequest.find({githubId: pull.id})
+    const thisPull = await Pullrequest.find({githubId: pull.id})
     if (thisPull) {
       await Pullrequest.findOneAndUpdate(
         {
@@ -95,7 +95,7 @@ module.exports.update = async (repo, user) => {
     } else {
       await new Pullrequest(values).save();
     }
-  });
+  }));
 };
 
 module.exports.seen = async (req, res) => {
