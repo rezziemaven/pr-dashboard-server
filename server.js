@@ -53,6 +53,6 @@ const PORT = 5000
 
 const ENV = process.env.NODE_ENV || 'development';
 
-http.listen(PORT, () =>
+module.exports = http.listen(PORT, () =>
   console.log(`Server is running on port ${PORT} in ${ENV} mode!`),
 );

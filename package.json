@@ -10,7 +10,8 @@
   "scripts": {
     "dev": "nodemon server.js",
     "start": "node server.js",
-    "test": "mocha ./test/tests"
+    "test": "mocha ./test/tests",
+    "test-coverage": "istanbul cover _mocha -- -R spec ./test/tests"
   },
   "dependencies": {
     "axios": "^0.18.0",
@@ -19,7 +20,6 @@
     "dotenv": "^5.0.1",
     "express": "^4.16.3",
     "jsonwebtoken": "^8.2.1",
-    "mocha": "^5.2.0",
     "mongoose": "^5.0.17",
     "morgan": "^1.9.0",
     "node-fetch": "^2.1.2",
@@ -35,7 +35,10 @@
   },
   "devDependencies": {
     "chai": "^4.1.2",
+    "istanbul": "^0.4.5",
+    "mocha": "^5.2.0",
+    "rewire": "^4.0.1",
     "sinon": "^6.1.4",
-    "rewire": "^4.0.1"
+    "supertest": "^3.1.0"
   }
 }
