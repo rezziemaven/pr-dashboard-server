@@ -12,7 +12,7 @@ module.exports = app => {
   // Authentication
   app.get('/v1/auth/github', authGithubController.auth());
   app.get('/v1/auth/github/private', authGithubController.private());
-  app.get('/v1/auth/callback', 
+  app.get('/v1/auth/callback',
     authGithubController.callback(),
     authJwtController.generateUserToken,
   );
@@ -48,3 +48,5 @@ module.exports = app => {
   app.get('/pr-update', webSocketController.test);
   app.get('/repos-update', webSocketController.reposUpdate);
 };
+
+//lalalalala
