@@ -60,11 +60,11 @@ describe('userController.me', () => {
       res.status.calledWith(400).should.be.true;
     });
 
-    it('should return a result', ()=> {
+    // it('should return a result', ()=> {
 
-      res.status(400).send.calledWith(e).should.be.true;
-      expect(res.status(400).send(e).calledTwice).to.be.true;
-    });
+    //   res.status(400).send.calledWith(e).should.be.true;
+    //   expect(res.status(400).send(e).calledTwice).to.be.true;
+    // });
   });
 
 
