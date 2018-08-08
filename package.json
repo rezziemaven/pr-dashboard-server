@@ -10,7 +10,7 @@
   "scripts": {
     "dev": "nodemon server.js",
     "start": "node server.js",
-    "test": "mocha ./test/tests",
+    "test": "NODE_ENV=test mocha ./test/tests",
     "test-coverage": "istanbul cover _mocha -- -R spec ./test/tests"
   },
   "dependencies": {

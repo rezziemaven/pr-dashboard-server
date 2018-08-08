@@ -12,16 +12,11 @@ require('../services/raven');
 
 module.exports.newEvent = async (req, res) => {
   // First message to test the Webhook from Github
-  // console.log("I'm a new event!");
-  // console.log(req.body);
-  if (req.body.zen && req.body.hook) return res.status(200).send();
-  // console.log("PULL", req.body.pull_request)
-  // console.log("comment", req.body.comment)
-  console.log('here is the req owner',req.body.repository.owner);
 
+
+  if (req.body.zen && req.body.hook) return res.status(200).send();
 
   if (!req.body.pull_request && req.body.comment) {
-    console.log("here in socket land")
     const comment = await Pullrequest.findOne({
       apiUrl: req.body.issue.pull_request.url,
     });
@@ -32,25 +27,19 @@ module.exports.newEvent = async (req, res) => {
     const repo = await Repository.findOne({
       githubId: req.body.repository.id
     })
-    // console.log("REQ BODT REPO", repo._id)
 
 
     const owners = await User.find({
       _repositories: {$elemMatch: {repository: repo._id}}
     })
 
-    // console.log("OWNDERS", owners)
-
     const owner = await User.findOne({
       githubId: req.body.repository.owner.id,
     });
 
     const newPulls = await Pullrequest.find({ closed_at: null });
-    console.log('owner',owner);
-    // console.log("SOCKET OWNDER", owner)
 
     owner.socket.forEach(client => {
-      console.log("client",client);
       io.to(client.socketId).emit('message', {
         type: 'pull_request',
         payload: newPulls,
@@ -74,6 +63,7 @@ module.exports.newEvent = async (req, res) => {
     closed_at,
     merged_at,
   } = req.body.pull_request;
+
   const existPullrequest = await Pullrequest.findOne({ githubId: id });
   const values = {
     githubId: id,
@@ -101,14 +91,12 @@ module.exports.newEvent = async (req, res) => {
   const owner = await User.findOne({
     githubId: req.body.repository.owner.id,
   });
-  console.log('exist', existPullrequest)
 
   if (!existPullrequest) {
     try {
       let repo = await Repository.findOne({
         githubId: req.body.repository.id,
       });
-      // if(!repo) throw new Error('Repo does not exist');
       if(!repo) {
         const {id, owner, ...repoData} = req.body.repository;
         repo = await Repository.create({
@@ -135,10 +123,8 @@ module.exports.newEvent = async (req, res) => {
           payload: newPulls,
         });
       });
-
       res.status(201).send({ message: 'Pull request created.' });
     } catch (e) {
-      console.error(e);
       Raven.captureException(e);
       res.status(400).send({
         errors: [e.message]
@@ -155,10 +141,8 @@ module.exports.newEvent = async (req, res) => {
           payload: newPulls,
         });
       });
-
       res.status(200).send({ message: 'Pull request updated.' });
     } catch (e) {
-      console.error(e);
       Raven.captureException(e);
       res.status(400).send(e);
     }
