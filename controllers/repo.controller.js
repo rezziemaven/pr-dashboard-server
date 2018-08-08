@@ -12,6 +12,7 @@ require('../services/raven');
 
 module.exports.listAll = async (req, res) => {
   try {
+    console.log('user id',req.user.id);
     const repositories = await Repository.find(
       { owner: req.user.id },
       {

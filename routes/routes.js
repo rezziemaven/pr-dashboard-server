@@ -17,7 +17,7 @@ module.exports = app => {
   // Authentication
   app.get('/v1/auth/github', authGithubController.auth());
   app.get('/v1/auth/github/private', authGithubController.private());
-  app.get('/v1/auth/callback', 
+  app.get('/v1/auth/callback',
     authGithubController.callback(),
     authJwtController.generateUserToken,
   );
@@ -39,7 +39,7 @@ module.exports = app => {
     requireAuth(),
     repoController.listPullrequests,
   );
-  app.post('/v1/user/me/repos/socket', repoController.socket);
+  app.post('/repos/socket', repoController.socket);
 
   // Repository settings
   app.patch('/v1/user/me/repos/:id/color', requireAuth(), repoController.color);
