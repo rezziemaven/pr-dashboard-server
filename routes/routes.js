@@ -45,7 +45,8 @@ module.exports = app => {
   app.patch('/v1/user/me/repos/:id/color', requireAuth(), repoController.color);
 
   // Github Webhooks
-  app.post('/v1/user/me/webhooks', githubMiddleware, webhookController.newEvent);
+  // app.post('/v1/user/me/webhooks', githubMiddleware, webhookController.newEvent);
+   app.post('/v1/user/me/webhooks', webhookController.newEvent);
   app.patch('/v1/user/me/repos/:id/enable', requireAuth(), webhookController.enable);
   app.patch('/v1/user/me/repos/:id/disable', requireAuth(), webhookController.disable);
 

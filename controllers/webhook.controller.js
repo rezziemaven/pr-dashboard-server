@@ -12,13 +12,9 @@ require('../services/raven');
 
 module.exports.newEvent = async (req, res) => {
   // First message to test the Webhook from Github
-  // console.log("I'm a new event!");
-  // console.log(req.body);
-  if (req.body.zen && req.body.hook) return res.status(200).send();
-  // console.log("PULL", req.body.pull_request)
-  // console.log("comment", req.body.comment)
-  console.log('here is the req owner',req.body.repository.owner);
+  console.log('here is req',req);
 
+  if (req.body.zen && req.body.hook) return res.status(200).send();
 
   if (!req.body.pull_request && req.body.comment) {
     console.log("here in socket land")
