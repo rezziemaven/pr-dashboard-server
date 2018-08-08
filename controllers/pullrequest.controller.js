@@ -7,10 +7,14 @@ const axios = require('axios');
 require('../services/raven');
 
 module.exports.listAll = async (req, res) => {
+  //TESTING ONLY   vv
+  if (process.env.NODE_ENV === 'test') req.user = {id: '5b6b47cfb35e992a6d49d8b9'}
+  //TESTING ONLY   ^^
   try {
     const repositories = await Repository.find({
       owner: req.user.id
     });
+    // console.log("repos", repositories)
     let pullrequests = [];
     Promise.all(repositories.map(async repo => {
       const pullrequest = await Pullrequest.find({
@@ -43,6 +47,7 @@ module.exports.listAll = async (req, res) => {
       });
       if (pullrequest.length > 0) pullrequests.push(...pullrequest);
     })).then(() => {
+      console.log("here")
       pullrequests.sort((a, b) => a.created_at - b.created_at);
       res.status(200).send(pullrequests);
     })
@@ -122,6 +127,11 @@ module.exports.seen = async (req, res) => {
 };
 
 module.exports.count = async (req, res) => {
+
+  //TESTING ONLY   vv
+  if (process.env.NODE_ENV === 'test') req.user = {id: '5b6b47cfb35e992a6d49d8b9'}
+  //TESTING ONLY   ^^
+
   try {
     const repositories = await Repository.find({
       owner: req.user.id
