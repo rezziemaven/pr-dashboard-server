@@ -13,6 +13,11 @@ module.exports = app => {
   // Integration test routes
   app.get('/test', testController.get);
   app.post('/test', testController.post);
+  app.get('/v1/user/me/pullrequests/test', pullrequestController.listAll);
+  app.patch('/v1/user/me/pullrequests/:id/seen/test', pullrequestController.seen);
+  app.get('/v1/user/me/pullrequests/count/test', pullrequestController.count);
+
+   //TEST
 
   // Authentication
   app.get('/v1/auth/github', authGithubController.auth());
@@ -26,6 +31,8 @@ module.exports = app => {
   app.get('/v1/user/me', requireAuth(), userController.me);
 
   // Pull requests
+
+ 
   app.get('/v1/user/me/pullrequests', requireAuth(), pullrequestController.listAll);
   app.patch('/v1/user/me/pullrequests/:id/seen',
     requireAuth(),

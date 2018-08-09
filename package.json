@@ -11,6 +11,7 @@
     "dev": "nodemon server.js",
     "start": "node server.js",
     "test": "NODE_ENV=test mocha ./test/tests",
+    "testME": "NODE_ENV=test mocha ./test/tests/pullrequest.test.js",
     "test-coverage": "istanbul cover _mocha -- -R spec ./test/tests"
   },
   "dependencies": {
